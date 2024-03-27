@@ -10,7 +10,12 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
 const app=express();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(cors())
+// Example: Allow requests only from http://localhost:5173
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true // Set this if your frontend sends credentials (e.g., cookies)
+  }));
+  
 
 app.use("/api/auth",authRoutes);
 app.use("/api/users",userRoutes);
