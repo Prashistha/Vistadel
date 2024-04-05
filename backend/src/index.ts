@@ -25,7 +25,7 @@ app.use(express.urlencoded({extended:true}))
 // Example: Allow requests only from http://localhost:5173
 app.use(cors({
     origin: process.env.FRONTEND_URL,
-    credentials: true // Set this if your frontend sends credentials (e.g., cookies)
+    credentials: true // Set this if your frontend sends credentials (e.g.,cookies)
   }));
 
 app.use(express.static(path.join(__dirname,"../../frontend/dist")));
