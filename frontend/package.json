@@ -14,6 +14,7 @@
     "@types/node": "^20.11.24",
     "cors": "^2.8.5",
     "react": "^18.2.0",
+    "react-datepicker": "^6.6.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
     "react-icons": "^5.0.1",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.61",
+    "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
