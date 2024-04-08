@@ -16,6 +16,7 @@ import Search from "./pages/Search";
 import Detail from "./pages/Details";
 import Booking from "./pages/Booking";
 
+
 const App = () => {
 	const { isLoggedIn } = useAppContext();
 	return (
