@@ -28,11 +28,8 @@ router.get("/search", async (req: Request, res: Response) => {
 
     const pageSize = 5;
     const pageNumber = parseInt(
-      // toString() to ensure type of req.query.page so parseInt works.
       req.query.page ? req.query.page.toString() : "1"
     );
-		// Each page stores 5 results.
-		// To go to page, skip 5 * 2 = 10 results
     const skip = (pageNumber - 1) * pageSize;
 
     const hotels = await Hotel.find(query)
@@ -94,6 +91,7 @@ router.post(
   verifyToken,
   async (req: Request, res: Response) => {
     const { numberOfNights } = req.body;
+    console.log(numberOfNights);
     const hotelId = req.params.hotelId;
 
     const hotel = await Hotel.findById(hotelId);

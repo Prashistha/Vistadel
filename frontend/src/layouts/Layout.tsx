@@ -3,9 +3,10 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import SearchBar from "../components/SearchBar";
 
-interface Props{
-    children : React.ReactNode;
+interface Props {
+  children: React.ReactNode;
 }
+
 const Layout = ({ children }: Props) => {
   return (
     <div className="flex flex-col min-h-screen">

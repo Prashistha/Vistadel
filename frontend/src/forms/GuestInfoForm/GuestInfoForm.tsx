@@ -8,7 +8,7 @@ type Props = {
   hotelId: string;
   pricePerNight: number;
 };
- 
+
 type GuestInfoFormData = {
   checkIn: Date;
   checkOut: Date;
