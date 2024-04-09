@@ -46,6 +46,7 @@ router.post(
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 86400000,
+        sameSite: "none",
       });
       res.status(200).json({ userId: user._id });
     } catch (error) {
@@ -62,6 +63,7 @@ router.get("/validate-token", verifyToken, (req: Request, res: Response) => {
 router.post("/logout", (req: Request, res: Response) => {
   res.cookie("auth_token", "", {
     expires: new Date(0),
+    sameSite: "none",
   });
   res.send();
 });

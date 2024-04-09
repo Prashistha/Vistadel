@@ -91,7 +91,6 @@ router.post(
   verifyToken,
   async (req: Request, res: Response) => {
     const { numberOfNights } = req.body;
-    console.log(numberOfNights);
     const hotelId = req.params.hotelId;
 
     const hotel = await Hotel.findById(hotelId);
