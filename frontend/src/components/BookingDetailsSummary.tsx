@@ -17,6 +17,7 @@ const BookingDetailsSummary = ({
   childCount,
   numberOfNights,
   hotel,
+
 }: Props) => {
   return (
     <div className="grid gap-4 rounded-lg border border-slate-300 p-5 h-fit">
@@ -46,6 +47,13 @@ const BookingDetailsSummary = ({
           {adultCount} adults & {childCount} children
         </div>
       </div>
+
+      {/* <div>
+        Room Type{" "}
+        <div className="font-bold">
+          
+        </div>
+      </div> */}
     </div>
   );
 };
