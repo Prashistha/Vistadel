@@ -32,8 +32,6 @@ const Booking = () => {
 				nightsToSend.toString()
 			);
 
-			console.log("Result from createPaymentIntent:", result);
-
 			return result;
 		},
 		{
@@ -57,8 +55,6 @@ const Booking = () => {
 	if (!hotel) {
 		return <></>;
 	}
-
-	console.log(paymentIntentData)
 
 	return (
 		<div className="grid md:grid-cols-[1fr_2fr]">
