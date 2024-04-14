@@ -124,6 +124,29 @@ export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
 	return response.json();
 };
 
+export const deleteBooking = async (hotelId: string, bookingId: string) => {
+	const url = `${API_BASE_URL}/api/my-bookings/${hotelId}/${bookingId}`;
+  
+	try {
+	  const response = await fetch(url, {
+		method: 'DELETE',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+	  });
+  
+	  if (!response.ok) {
+		throw new Error(`Failed to delete booking: ${response.statusText}`);
+	  }
+  
+	  // If the request was successful, return the response
+	  return response;
+	} catch (error: any) { // Specify 'any' type for error
+	  // If an error occurs, throw it
+	  throw new Error(`Error deleting booking: ${error.message}`);
+	}
+  };
+
 export const updateMyHotelById = async (hotelFormData: FormData) => {
 	const response = await fetch(
 		`${API_BASE_URL}/api/my-hotels/${hotelFormData.get("hotelId")}`,
