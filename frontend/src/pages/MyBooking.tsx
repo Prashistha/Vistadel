@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
-import { MdDelete } from "react-icons/md";
 import { useMutation, useQueryClient } from "react-query";
 import { useAppContext } from "../contexts/AppContext";
 
