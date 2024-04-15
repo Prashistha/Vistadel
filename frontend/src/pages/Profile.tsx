@@ -1,22 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
 import * as apiClient from '../api-client';
 import { useAppContext } from '../contexts/AppContext';
 
 const Profile = () => {
-  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
   const { showToast } = useAppContext();
-  const queryClient = useQueryClient();
 
   const fetchUserDetails = async () => {
     try {
       const data = await apiClient.fetchUserDetails();
-      const constructedFullName = `${data.firstName} ${data.lastName}`;
-      setFullName(constructedFullName);
       setEmail(data.email);
       setFirstName(data.firstName);
       setLastName(data.lastName);
@@ -39,7 +34,7 @@ const Profile = () => {
 	  showToast({ message: error.message, type: 'ERROR' });
 	}
   };
-  
+
 
   return (
     <div className="bg-white overflow-hidden shadow rounded-lg border">
@@ -49,10 +44,6 @@ const Profile = () => {
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
         <form className="sm:divide-y sm:divide-gray-200">
-          {/* <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-             <dt className="text-sm font-medium text-gray-500">Full name</dt> 
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{fullName}</dd>
-          </div> */}
           <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt className="text-sm font-medium text-gray-500">Email address</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
