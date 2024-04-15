@@ -65,8 +65,8 @@ const MyBookings = () => {
                   <span className="font-bold mr-2">Guests:</span>
                   <span>{booking.adultCount} adults, {booking.childCount} children</span>
                 </div>
-                <button style={{borderRadius: '50%', border: '2px solid red', padding: '10px'}} onClick={() => handleDelete(hotel._id, booking._id)}>
-                  <MdDelete size={25} />
+                <button style={ { padding: '10px'}} className="bg-red-600 text-white p-2 rounded-lg  gap-5 mt-10" onClick={() => handleDelete(hotel._id, booking._id)}>
+                  Cancel Booking 
                 </button>
               </div>
             ))}
