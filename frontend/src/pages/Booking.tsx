@@ -68,8 +68,10 @@ const Booking = () => {
 			/>
 			{currentUser && paymentIntentData && (
 				<BookingForm
+					numberOfNights={numberOfNights}
 					currentUser={currentUser}
 					paymentIntent={paymentIntentData}
+					
 				/>
 			)}
 		</div>

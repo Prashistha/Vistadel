@@ -12,6 +12,7 @@ import { useAppContext } from "../../contexts/AppContext";
 type Props = {
   currentUser: UserType;
   paymentIntent: PaymentIntentResponse;
+  numberOfNights: number;
 };
 
 export type BookingFormData = {
@@ -26,7 +27,7 @@ export type BookingFormData = {
   totalCost: number;
 };
 
-const BookingForm = ({ currentUser, paymentIntent }: Props) => {
+const BookingForm = ({ currentUser, paymentIntent,numberOfNights }: Props) => {
   const search = useSearchContext();
   const { hotelId } = useParams();
 
@@ -43,6 +44,11 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
       },
     }
   );
+  const pricePerNight = paymentIntent.totalCost ;
+  const totalCost = pricePerNight * numberOfNights ;
+  console.log("numberOfNights:", numberOfNights);
+  console.log("pricePerNight:", pricePerNight);
+  console.log("totalCost:", totalCost);
 
   const { handleSubmit, register } = useForm<BookingFormData>({
     defaultValues: {
@@ -54,7 +60,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
       checkIn: search.checkIn.toISOString(),
       checkOut: search.checkOut.toISOString(),
       hotelId: hotelId,
-      totalCost: paymentIntent.totalCost,
+      totalCost: paymentIntent.totalCost ,
     },
   });
 
@@ -106,8 +112,9 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
 
         <div className="bg-gray-200 p-4 rounded-md">
           <div className="font-semibold text-lg">
-            Total Cost: Rs. {paymentIntent.totalCost.toFixed(2)}
-          </div>
+    Total Cost: Rs. {totalCost}
+  </div>
+
           <div className="text-xs">Includes taxes and charges</div>
         </div>
       </div>
