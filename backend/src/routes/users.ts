@@ -3,7 +3,6 @@ import User from "../models/user";
 import jwt from "jsonwebtoken";
 import { check, validationResult } from "express-validator";
 import verifyToken from "../middleware/auth";
-
 const router = express.Router();
 
 router.get("/user-details", verifyToken, async (req: Request, res: Response) => {
@@ -86,5 +85,49 @@ router.post(
 		}
 	}
 );
-
+router.put(
+	"/update-profile",
+	verifyToken,
+	[
+	  check("firstName", "First Name is required").optional().isString(),
+	  check("lastName", "Last Name is required").optional().isString(),
+	  check("email", "Valid email is required").optional().isEmail(),
+	],
+	async (req: Request, res: Response) => {
+	  const errors = validationResult(req);
+	  if (!errors.isEmpty()) {
+		return res.status(400).json({ message: errors.array() });
+	  }
+  
+	  const userId = req.userId;
+  
+	  try {
+		let user = await User.findById(userId);
+		if (!user) {
+		  return res.status(400).json({ message: "User not found" });
+		}
+  
+		// Update user fields if provided in request body
+		if (req.body.firstName) {
+		  user.firstName = req.body.firstName;
+		}
+		if (req.body.lastName) {
+		  user.lastName = req.body.lastName;
+		}
+		if (req.body.email) {
+		  user.email = req.body.email;
+		}
+  
+		await user.save();
+  
+		// Optionally, you can generate and send a new JWT token here
+  
+		res.status(200).json({ message: "Profile updated successfully" });
+	  } catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Something went wrong" });
+	  }
+	}
+  );
+  
 export default router;

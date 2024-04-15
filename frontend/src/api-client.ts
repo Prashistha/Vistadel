@@ -28,7 +28,27 @@ export const fetchUserDetails = async (): Promise<UserType> => {
 	}
 	return response.json();
 };
-
+export const updateUserProfile = async (formData: {
+	email?: string;
+	firstName?: string;
+	lastName?: string;
+  }) => {
+	const response = await fetch(`${API_BASE_URL}/api/users/update-profile`, {
+	  method: 'PUT',
+	  credentials: 'include',
+	  headers: {
+		'Content-Type': 'application/json',
+	  },
+	  body: JSON.stringify(formData),
+	});
+  
+	const responseBody = await response.json();
+  
+	if (!response.ok) {
+	  throw new Error(responseBody.message);
+	}
+  };
+  
 export const register = async (formData: RegisterFormData) => {
 	const response = await fetch(`${API_BASE_URL}/api/users/register`, {
 		method: "POST",
