@@ -7,6 +7,7 @@ import {
 	UserType,
 } from "../../backend/src/shared/types";
 import { BookingFormData } from "./forms/BookingForm/BookingForm";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const fetchCurrentUser = async (): Promise<UserType> => {
@@ -41,14 +42,14 @@ export const updateUserProfile = async (formData: {
 	  },
 	  body: JSON.stringify(formData),
 	});
-  
+
 	const responseBody = await response.json();
-  
+
 	if (!response.ok) {
 	  throw new Error(responseBody.message);
 	}
   };
-  
+
 export const register = async (formData: RegisterFormData) => {
 	const response = await fetch(`${API_BASE_URL}/api/users/register`, {
 		method: "POST",
@@ -146,7 +147,7 @@ export const fetchMyHotelById = async (hotelId: string): Promise<HotelType> => {
 
 export const deleteBooking = async (hotelId: string, bookingId: string) => {
 	const url = `${API_BASE_URL}/api/my-bookings/${hotelId}/${bookingId}`;
-  
+
 	try {
 	  const response = await fetch(url, {
 		method: 'DELETE',
@@ -154,11 +155,11 @@ export const deleteBooking = async (hotelId: string, bookingId: string) => {
 		  'Content-Type': 'application/json',
 		},
 	  });
-  
+
 	  if (!response.ok) {
 		throw new Error(`Failed to delete booking: ${response.statusText}`);
 	  }
-  
+
 	  // If the request was successful, return the response
 	  return response;
 	} catch (error: any) { // Specify 'any' type for error
@@ -205,8 +206,6 @@ export const searchHotels = async (
 	queryParams.append("destination", searchParams.destination || "");
 	queryParams.append("checkIn", searchParams.checkIn || "");
 	queryParams.append("checkOut", searchParams.checkOut || "");
-	//   queryParams.append("adultCount", searchParams.adultCount || "");
-	//   queryParams.append("childCount", searchParams.childCount || "");
 	queryParams.append("page", searchParams.page || "");
 
 	queryParams.append("maxPrice", searchParams.maxPrice || "");

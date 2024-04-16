@@ -47,13 +47,6 @@ const BookingDetailsSummary = ({
           {adultCount} adults & {childCount} children
         </div>
       </div>
-
-      {/* <div>
-        Room Type{" "}
-        <div className="font-bold">
-          
-        </div>
-      </div> */}
     </div>
   );
 };

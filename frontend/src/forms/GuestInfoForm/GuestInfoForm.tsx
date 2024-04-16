@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import { useSearchContext } from "../../contexts/SearchContext";
 import { useAppContext } from "../../contexts/AppContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 type Props = {
   hotelId: string;
@@ -66,8 +65,6 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
     );
     navigate(`/hotel/${hotelId}/booking`);
   };
-
-  const [selectedOption, setSelectedOption] = useState("");
 
   return (
     <div className="flex flex-col p-4 bg-[#E3B7A0] gap-4">
@@ -145,18 +142,6 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             )}
           </div>
           <div>
-              
-            <select
-            required
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-            className="min-w-full bg-white p-2 focus:outline-none"
-          >
-            <option value="">Select type of room</option>
-            <option value="option1">King room with balcony</option>
-            <option value="option2">Deluxe king room</option>
-            <option value="option3">Two bedroom with balcony</option>
-          </select>
           </div>
           {isLoggedIn ? (
             <button className="bg-[#BB6464] text-white h-full p-2 font-bold text-xl">

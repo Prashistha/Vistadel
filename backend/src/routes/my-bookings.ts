@@ -31,12 +31,13 @@ router.get("/", verifyToken, async (req: Request, res: Response) => {
     res.status(500).json({ message: "Unable to fetch bookings" });
   }
 });
+
 router.delete("/:hotelId/:bookingId", async (req: Request, res: Response) => {
   const { hotelId, bookingId } = req.params;
 
   try {
     const hotel = await Hotel.findById(hotelId);
-    
+
     if (!hotel) {
       return res.status(404).json({ message: "Hotel not found" });
     }
