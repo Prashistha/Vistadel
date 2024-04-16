@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
 import { useMutation, useQueryClient } from "react-query";
 import { useAppContext } from "../contexts/AppContext";
+import { useSearchContext } from "../contexts/SearchContext";
 
 const MyBookings = () => {
   const { data: hotels } = useQuery(
@@ -11,7 +12,7 @@ const MyBookings = () => {
 
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
-
+  const search = useSearchContext();
   const deleteBookingMutation = useMutation(
     ({ hotelId, bookingId }: { hotelId: string, bookingId: string }) => apiClient.deleteBooking(hotelId, bookingId),
     {
@@ -24,6 +25,27 @@ const MyBookings = () => {
       },
     }
   );
+  function calculateDifferenceInDays(startDateString: Date, endDateString: Date): number {
+    // Convert date strings from `YYYY/MM/DD` format to `YYYY-MM-DD` format
+    const formattedStartDateString: string = startDateString.toISOString().slice(0,10);
+    const formattedEndDateString: string = endDateString.toISOString().slice(0,10);
+  
+    // Parse the date strings using the formatted format
+    const startDate: Date = new Date(formattedStartDateString);
+    const endDate: Date = new Date(formattedEndDateString);
+  
+    // Calculate the difference in time in milliseconds
+    const differenceInTime: number = endDate.getTime() - startDate.getTime();
+  
+    // Convert the difference from milliseconds to days
+    const differenceInDays: number = differenceInTime / (1000 * 60 * 60 * 24);
+    return differenceInDays;
+}
+
+const startDate: Date = search.checkIn;
+const endDate: Date = search.checkOut;
+const differenceInDays: number = calculateDifferenceInDays(startDate, endDate);
+
   
 
   const handleDelete = async (hotelId: string, bookingId: string) => {
@@ -64,6 +86,7 @@ const MyBookings = () => {
                   <span className="font-bold mr-2">Guests:</span>
                   <span>{booking.adultCount} adults, {booking.childCount} children</span>
                 </div>
+       
                 <button style={ { padding: '10px'}} className="bg-red-600 text-white p-2 rounded-lg  gap-5 mt-10" onClick={() => handleDelete(hotel._id, booking._id)}>
                   Cancel Booking 
                 </button>

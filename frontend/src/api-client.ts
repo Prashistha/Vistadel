@@ -248,14 +248,15 @@ export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
 
 export const createPaymentIntent = async (
 	hotelId: string,
-	numberOfNights: string
+	numberOfNights: string,
+	adultCount:number
 ): Promise<PaymentIntentResponse> => {
 	const response = await fetch(
 		`${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`,
 		{
 			credentials: "include",
 			method: "POST",
-			body: JSON.stringify({ numberOfNights }),
+			body: JSON.stringify({ numberOfNights, adultCount }),
 			headers: {
 				"Content-Type": "application/json",
 			},

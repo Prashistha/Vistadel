@@ -46,10 +46,6 @@ const BookingForm = ({ currentUser, paymentIntent,numberOfNights }: Props) => {
   );
   const pricePerNight = paymentIntent.totalCost ;
   const totalCost = pricePerNight * numberOfNights ;
-  console.log("numberOfNights:", numberOfNights);
-  console.log("pricePerNight:", pricePerNight);
-  console.log("totalCost:", totalCost);
-
   const { handleSubmit, register } = useForm<BookingFormData>({
     defaultValues: {
       firstName: currentUser.firstName,
@@ -60,7 +56,7 @@ const BookingForm = ({ currentUser, paymentIntent,numberOfNights }: Props) => {
       checkIn: search.checkIn.toISOString(),
       checkOut: search.checkOut.toISOString(),
       hotelId: hotelId,
-      totalCost: paymentIntent.totalCost ,
+      totalCost: paymentIntent.totalCost,
     },
   });
 

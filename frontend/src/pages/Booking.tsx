@@ -29,9 +29,10 @@ const Booking = () => {
 
 			const result = await apiClient.createPaymentIntent(
 				hotelId as string,
-				nightsToSend.toString()
+				nightsToSend.toString(),
+				search.adultCount,
 			);
-
+			console.log(result)
 			return result;
 		},
 		{

@@ -26,11 +26,10 @@ const Profile = () => {
 
   const handleUpdateProfile = async () => {
 	try {
-	  await apiClient.updateUserProfile({ email, firstName, lastName });
-	  // Optionally, you can re-fetch user details after the update
+	  await apiClient.updateUserProfile({  firstName, lastName });
 	  await fetchUserDetails();
 	  showToast({ message: 'Profile updated successfully', type: 'SUCCESS' });
-	} catch (error: any) { // Specify 'any' type for error
+	} catch (error: any) { 
 	  showToast({ message: error.message, type: 'ERROR' });
 	}
   };
@@ -48,9 +47,9 @@ const Profile = () => {
             <dt className="text-sm font-medium text-gray-500">Email address</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <input
+              disabled
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 className="border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md w-full"
               />
             </dd>
