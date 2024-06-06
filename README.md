@@ -19,6 +19,8 @@ Vistadel is available on both web and mobile platforms for users' convenience.
 - **Web App:** Built using the MERN stack (MongoDB, ExpressJS, ReactJS, Node.js), with TailwindCSS for styling.
 - **Mobile App (APK):** Developed using React Native, Node.js, and MongoDB, along with ExpressJS for backend functionalities.
 
+## Deployed on - https://vistadel.onrender.com
+
 ![Home Page](https://github.com/Prashistha/Vistadel/assets/109412601/7501f476-aabf-4c6b-9af7-f693831d60f5)
 ![Sign in page](https://github.com/Prashistha/Vistadel/assets/109412601/a56a19c0-8096-42d9-a39f-26b02dc336a4)
 ![Sign up page](https://github.com/Prashistha/Vistadel/assets/109412601/19867f53-d58e-404a-903d-e2252f43b60c)
